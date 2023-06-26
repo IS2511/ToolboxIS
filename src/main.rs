@@ -3,6 +3,7 @@
 use eframe::egui;
 use egui::TextStyle;
 use tokio::sync::mpsc::{unbounded_channel, UnboundedSender, UnboundedReceiver};
+use crate::core::meta::AppMeta;
 
 // mod util;
 // use util::lang;
@@ -16,6 +17,8 @@ use crate::core::msg;
 
 fn main() {
     tracing_subscriber::fmt::init();
+
+    let meta = AppMeta::default();
 
     // TODO: Should this be unbounded or not?
     // Maybe use std::sync::mpsc for CoreToUi?
@@ -33,7 +36,7 @@ fn main() {
 
     let options = eframe::NativeOptions::default();
     let ui_result = eframe::run_native(
-        "StreamToolkitIS",
+        meta.name,
         options,
         Box::new(|cc| {
             // let mut style = egui::Style::default();
@@ -48,7 +51,7 @@ fn main() {
             // style.text_styles.get_mut(&TextStyle::Heading).unwrap().size *= text_size_mult;
             // cc.egui_ctx.set_style(style);
 
-            Box::new(MyApp::new(state, ui_tx))
+            Box::new(MyApp::new(meta, state, ui_tx))
         }),
     );
 
@@ -64,14 +67,18 @@ fn main() {
 
 
 struct MyApp {
+    meta: AppMeta,
+
     state: std::sync::Arc<core::state::MainState>,
 }
 
 impl MyApp {
-    fn new(state: std::sync::Arc<core::state::MainState>, ui_tx: UnboundedSender<msg::UiToCore>) -> Self {
+    fn new(meta: AppMeta, state: std::sync::Arc<core::state::MainState>, ui_tx: UnboundedSender<msg::UiToCore>) -> Self {
         tracing::debug!("Creating egui app");
 
         Self {
+            meta,
+
             state,
         }
     }
