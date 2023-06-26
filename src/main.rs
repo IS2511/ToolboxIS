@@ -106,6 +106,10 @@ impl eframe::App for MyApp {
 
     fn on_exit(&mut self, _gl: Option<&eframe::glow::Context>) {
         tracing::trace!("egui on_exit");
+
+        self.ui_tx.send(msg::UiToCore::Exit {
+            user_initiated: false,
+        }).expect("Failed to send exit message to core thread");
         // self.core_msg_manager.send(egui::Id::null(), msg::UiToCore::Exit)
         //     .expect("Failed to send exit message to core thread");
     }
