@@ -10,7 +10,7 @@ edition = "2021"
 eframe = "0.21.3"
 #egui_extras = "0.21.0"
 # Async library
-tokio = { version = "1.28.0", features = ["parking_lot", "macros", "rt-multi-thread"] }
+tokio = { version = "1.28.0", features = ["parking_lot", "macros", "sync", "rt-multi-thread"] }
 # Logging
 tracing = "0.1.37"
 tracing-subscriber = "0.3.17"
