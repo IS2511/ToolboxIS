@@ -61,7 +61,11 @@ fn main() {
     //     tracing::info!("Core thread did not exit, sending exit message");
     // }
 
+    tracing::debug!("Joining core thread...");
+
     core_thread.join().expect("Core thread panicked");
+
+    tracing::debug!("Exiting UI thread...");
 }
 
 
