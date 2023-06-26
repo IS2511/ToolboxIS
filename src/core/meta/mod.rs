@@ -1,16 +1,17 @@
 pub mod update;
 
+
 pub struct AppMeta {
-    name: String,
-    version: semver::Version,
-    authors: Vec<String>,
-    homepage: String,
-    additional: AppMetaAdditionalResources,
+    pub name: &'static str,
+    pub version: semver::Version,
+    pub authors: Vec<&'static str>,
+    pub homepage: &'static str,
+    pub additional: AppMetaAdditionalResources,
 }
 
 pub struct AppMetaAdditionalResources {
-    docs: Option<String>,
-    download: Option<String>,
-    faq: Option<String>,
-    help: Option<String>,
+    pub docs: Option<&'static str>,
+    pub download: Option<&'static str>,
+    pub faq: Option<&'static str>,
+    pub help: Option<&'static str>,
 }
