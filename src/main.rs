@@ -70,6 +70,7 @@ struct MyApp {
     meta: AppMeta,
 
     state: std::sync::Arc<core::state::MainState>,
+    ui_tx: UnboundedSender<msg::UiToCore>,
 }
 
 impl MyApp {
@@ -80,6 +81,7 @@ impl MyApp {
             meta,
 
             state,
+            ui_tx,
         }
     }
 }
