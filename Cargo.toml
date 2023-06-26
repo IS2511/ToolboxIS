@@ -1,0 +1,27 @@
+[package]
+name = "ToolboxIS"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+# GUI stuff
+eframe = "0.21.3"
+#egui_extras = "0.21.0"
+# Async library
+tokio = { version = "1.28.0", features = ["parking_lot", "macros", "rt-multi-thread"] }
+# Logging
+tracing = "0.1.37"
+tracing-subscriber = "0.3.17"
+# Config stuff
+serde = "1.0.162"
+figment = { version = "0.10.8", features = ["env", "toml"] }
+toml_edit = "0.19.8"
+# Etc
+parking_lot = "0.12.1"
+arc-swap = "1.6.0"
+ahash = "0.8.3"
+thiserror = "1.0.40"
+semver = "1.0.17"
+chrono = "0.4.24"
