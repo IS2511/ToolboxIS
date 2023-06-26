@@ -1,7 +1,6 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")] // hide console window on Windows in release
 
 use eframe::egui;
-use egui::TextStyle;
 use tokio::sync::mpsc::{unbounded_channel, UnboundedSender, UnboundedReceiver};
 use crate::core::meta::AppMeta;
 
@@ -39,6 +38,7 @@ fn main() {
         meta.name,
         options,
         Box::new(|cc| {
+            // use egui::TextStyle;
             // let mut style = egui::Style::default();
             // // Disable stroke on hover by default
             // // style.visuals.widgets.hovered.bg_stroke.width = 0.0;
