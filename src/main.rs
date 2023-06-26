@@ -94,10 +94,10 @@ impl eframe::App for MyApp {
         egui::CentralPanel::default().show(ctx, |ui| {
 
 
-            // ui.with_layout(egui::Layout::bottom_up(egui::Align::RIGHT), |ui| {
-            //     ui.style_mut().spacing.item_spacing = egui::vec2(0.0, 0.0);
-            //     ui.label(format!("{} v{}", self.state.meta.name, self.state.meta.version));
-            // });
+            ui.with_layout(egui::Layout::bottom_up(egui::Align::RIGHT), |ui| {
+                ui.style_mut().spacing.item_spacing = egui::vec2(0.0, 0.0);
+                ui.label(format!("{} v{}", self.meta.name, self.meta.version));
+            });
 
             // ui.add(LoginPanel::new(self.locale_manager.clone()));
         });
