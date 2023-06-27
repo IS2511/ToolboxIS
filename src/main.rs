@@ -7,11 +7,10 @@ use crate::core::meta::AppMeta;
 // mod util;
 // use util::lang;
 
-// mod gui;
-
 mod core;
 use crate::core::msg;
 
+mod ui;
 
 
 fn main() {
@@ -93,19 +92,8 @@ impl MyApp {
 
 impl eframe::App for MyApp {
 
-    fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
-
-        egui::CentralPanel::default().show(ctx, |ui| {
-
-
-            ui.with_layout(egui::Layout::bottom_up(egui::Align::RIGHT), |ui| {
-                ui.style_mut().spacing.item_spacing = egui::vec2(0.0, 0.0);
-                ui.label(format!("{} v{}", self.meta.name, self.meta.version));
-            });
-
-            // ui.add(LoginPanel::new(self.locale_manager.clone()));
-        });
-
+    fn update(&mut self, ctx: &egui::Context, frame: &mut eframe::Frame) {
+        ui::update(self, ctx, frame)
     }
 
     fn on_exit(&mut self, _gl: Option<&eframe::glow::Context>) {
