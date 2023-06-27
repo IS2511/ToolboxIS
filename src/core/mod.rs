@@ -8,7 +8,7 @@ pub mod msg;
 pub mod state;
 
 
-pub fn start(state: Arc<state::MainState>, mut ui_rx: UnboundedReceiver<msg::UiToCore>)-> JoinHandle<()> {
+pub fn start(state: Arc<state::MainState>, mut ui_rx: UnboundedReceiver<msg::UiToCore>) -> JoinHandle<()> {
     let core_started = Arc::new((Mutex::new(false), Condvar::new()));
     let core_started_2 = Arc::clone(&core_started);
 
