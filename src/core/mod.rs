@@ -1,7 +1,9 @@
 use std::sync::{Arc, Condvar, Mutex};
 use std::thread::JoinHandle;
 use tokio::sync::mpsc::{UnboundedReceiver, UnboundedSender};
+use crate::core::msg::UiToCore;
 
+pub mod audio;
 pub mod config;
 pub mod meta;
 pub mod msg;
@@ -37,7 +39,7 @@ pub fn start(state: Arc<state::MainState>, mut ui_rx: UnboundedReceiver<msg::UiT
 
             tracing::trace!("Core runtime exiting...");
             // Ok(())
-        })
+        });
     });
 
     // Wait up to 1000ms (1s)
@@ -72,5 +74,6 @@ async fn handle_ui_message(msg: msg::UiToCore, core_shutdown: &mut bool, state: 
         msg::UiToCore::Exit { user_initiated } => {
             *core_shutdown = true;
         }
+        _ => {} // TODO
     }
 }
